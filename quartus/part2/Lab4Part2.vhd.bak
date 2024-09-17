@@ -1,0 +1,69 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity Lab4Part2 is
+    port (
+        clk   : in std_logic;
+        t     : in std_logic;   -- Usado para habilitar o contador
+        q     : out std_logic_vector(15 downto 0); -- Saída do contador
+        clr   : in std_logic;   -- Usado para limpar o contador
+        -- Saídas para os displays de 7 segmentos
+        HEX00 : out std_logic_vector(6 downto 0);
+        HEX01 : out std_logic_vector(6 downto 0);
+        HEX02 : out std_logic_vector(6 downto 0);
+        HEX03 : out std_logic_vector(6 downto 0)
+    );
+end Lab4Part2;
+
+architecture Behavioral of Lab4Part2 is
+
+    component contador16b
+    port (
+        clk  : in std_logic;
+        t    : in std_logic;
+        q    : out std_logic_vector(15 downto 0);
+        clr  : in std_logic
+    );
+    end component;
+
+    signal q_int : std_logic_vector(15 downto 0);
+
+    -- Função para converter um dígito hexadecimal em um código de 7 segmentos
+    function hex_to_7seg(digit : std_logic_vector(3 downto 0)) return std_logic_vector is
+    begin
+        case digit is
+            when "0000" => return "0011111"; -- 0
+            when "0001" => return "0000110"; -- 1
+            when "0010" => return "0101101"; -- 2
+            when "0011" => return "0100111"; -- 3
+            when "0100" => return "0110011"; -- 4
+            when "0101" => return "0110110"; -- 5
+            when "0110" => return "0111110"; -- 6
+            when "0111" => return "0000111"; -- 7
+            when "1000" => return "0111111"; -- 8
+            when "1001" => return "0110111"; -- 9
+            when "1010" => return "0111011"; -- A
+            when "1011" => return "0111110"; -- b
+            when "1100" => return "0011101"; -- C
+            when "1101" => return "0101110"; -- d
+            when "1110" => return "0111101"; -- E
+            when "1111" => return "0111001"; -- F
+            when others => return "1111111"; -- Display nothing
+        end case;
+    end function;
+
+begin
+    -- Instanciar o contador
+    counter : contador16b port map ( clk, t, q_int, clr );
+
+    -- Mapear o valor do contador para os displays de 7 segmentos
+    HEX00 <= hex_to_7seg(q_int(3 downto 0));   -- Exibe os 4 bits menos significativos
+    HEX01 <= hex_to_7seg(q_int(7 downto 4));   -- Exibe os próximos 4 bits
+    HEX02 <= hex_to_7seg(q_int(11 downto 8));  -- Exibe os próximos 4 bits
+    HEX03 <= hex_to_7seg(q_int(15 downto 12)); -- Exibe os 4 bits mais significativos
+
+    -- Saída do contador
+    q <= q_int;
+
+end Behavioral;

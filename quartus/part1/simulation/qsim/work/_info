@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/12544570/Desktop/praticaSD/simulation/qsim
+vcontador8b
+Z1 !s110 1725998643
+!i10b 1
+!s100 ]O@HfIXjLXCinYD`V;WiD3
+IJRJHbJ1[2jUPW9ZzXnD@<1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1725998642
+Z4 8trabalho2.vo
+Z5 Ftrabalho2.vo
+L0 32
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1725998643.000000
+Z8 !s107 trabalho2.vo|
+Z9 !s90 -work|work|trabalho2.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vcontador8b_vlg_vec_tst
+R1
+!i10b 1
+!s100 hO;HA0j^4QOAjk3S_g7@n3
+IRd[QRoXR3k[1PFjI6AeXP2
+R2
+R0
+R3
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R1
+!i10b 1
+!s100 @k?YMlEM]6hZfoIilI;o30
+I?=@oZXonL8lnkoI2]6PXe3
+R2
+R0
+R3
+R4
+R5
+L0 637
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

@@ -1,0 +1,189 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "seg[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[7]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[8]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[9]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[10]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[11]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[12]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[13]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[14]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[15]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[16]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[17]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[18]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[19]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[20]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[21]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[22]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[23]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[24]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[25]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[26]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[27]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[28]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[29]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[30]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[31]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[32]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[33]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[34]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[35]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[36]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[37]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[38]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[39]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[40]",
+					"strict" : false
+				},
+				{
+					"name" : "seg[41]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "enb",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

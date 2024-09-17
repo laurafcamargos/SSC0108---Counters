@@ -1,0 +1,17 @@
+|contador4b
+Q_0 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+CLE_AR => inst.ACLR
+CLE_AR => inst1.ACLR
+CLE_AR => inst2.ACLR
+CLE_AR => inst3.ACLR
+ENA_BLE => inst.IN0
+ENA_BLE => inst4.IN0
+CLO_CK => inst.CLK
+CLO_CK => inst1.CLK
+CLO_CK => inst2.CLK
+CLO_CK => inst3.CLK
+Q_1 <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+Q_2 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+Q_3 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+
+

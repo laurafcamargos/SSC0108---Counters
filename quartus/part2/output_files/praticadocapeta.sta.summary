@@ -1,0 +1,53 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'RELOGIO'
+Slack : -1.479
+TNS   : -17.901
+
+Type  : Slow 1100mV 85C Model Hold 'RELOGIO'
+Slack : 0.431
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'RELOGIO'
+Slack : -0.538
+TNS   : -12.833
+
+Type  : Slow 1100mV 0C Model Setup 'RELOGIO'
+Slack : -1.663
+TNS   : -20.091
+
+Type  : Slow 1100mV 0C Model Hold 'RELOGIO'
+Slack : 0.439
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'RELOGIO'
+Slack : -0.538
+TNS   : -12.626
+
+Type  : Fast 1100mV 85C Model Setup 'RELOGIO'
+Slack : -0.080
+TNS   : -0.240
+
+Type  : Fast 1100mV 85C Model Hold 'RELOGIO'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'RELOGIO'
+Slack : -0.266
+TNS   : -4.297
+
+Type  : Fast 1100mV 0C Model Setup 'RELOGIO'
+Slack : -0.063
+TNS   : -0.162
+
+Type  : Fast 1100mV 0C Model Hold 'RELOGIO'
+Slack : 0.191
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'RELOGIO'
+Slack : -0.263
+TNS   : -4.258
+
+------------------------------------------------------------
