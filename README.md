@@ -37,7 +37,7 @@ A diferença observada na implementação de um circuito de 4 bits no Quartus em
 	
 ## Part II
 
-Codigo VHDL:
+### Codigo VHDL:
 
 ```
 library ieee;
@@ -70,13 +70,14 @@ begin
 	end process;
 end Behavioral;
 ```
-![RTL Viewer](src/RTLpart2_pages-to-jpg-0001.jpg "RTL Viewer")
-
+<div align ="center">
+    <img src ="src/RTLpart2_pages-to-jpg-0001.jpg" style="max-width: 100%;" alt="img1">
+</div>
 [Link para o projeto implementado no Quartus](quartus/part2/)
 
 ## Part III
 
-Codigo VHDL:
+### Codigo VHDL:
 
 ```
 library ieee;
