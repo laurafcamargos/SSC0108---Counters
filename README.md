@@ -15,14 +15,16 @@
 Versão do Quartus: Quartus Prime 21.1 <br>
 
 ## Part I
-### 1.
+### 1. 
 ### 2.
+[Simulação do circuito no Quartus](src/simulacao1.PNG)
 
 ### 3.
 
 ### 4.
 
 ### 5. 
+[RTL Viewer](src/RTL1.PNG)
 A diferença observada na implementação de um circuito de 4 bits no Quartus em comparação com o circuito original da Figura 1 é que, no RTL Viewer, o software Quartus utiliza flip-flops do tipo D para realizar a síntese do contador síncrono de 4 bits. Os flip-flops tipo D são comumente usados para armazenar e controlar o estado de um contador síncrono, garantindo que a transição de um estado para o próximo ocorra de forma precisa a cada pulso de clock. Isso difere do que pode ser mostrado na Figura 1, pois embora ambos possam implementar o contador síncrono de 4 bits, o Quartus, ao sintetizar o circuito, usa flip-flops tipo D, pois são mais comuns em FPGAs. Já a Figura 1, ao usar flip-flops tipo T, representa uma forma diferente de projetar o contador, mas ambos alcançam o mesmo resultado lógico.
 
 RTL Viewer:
