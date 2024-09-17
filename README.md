@@ -71,7 +71,7 @@ begin
 end Behavioral;
 ```
 <div align ="center">
-    <img src ="src/RTLpart2_pages-to-jpg-0001.jpg" style="max-width: 100%;" alt="img1">
+    <img src ="src/rtl_part2.png" style="max-width: 100%;" alt="img1">
 </div>
 
 [Link para o projeto implementado no Quartus](quartus/part2/)
