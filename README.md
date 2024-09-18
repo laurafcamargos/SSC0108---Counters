@@ -16,6 +16,18 @@ Quartus Prime 21.1 <br>
 
 ## Part I
 ### 1. 
+Implementamos o circuito com portas lógicas e geramos o arquivo vhdl a partir dele:
+
+<div align ="center">
+    <img src ="src/esquemapart1.png.png" style="max-width: 100%;" alt="img1">
+</div>
+
+Captura de tela durante a compilação do circuito que mostra quantos elementos lógicos e quantos registradores são utilizados:
+
+<div align ="center">
+    <img src ="src/logic_elements_part1.png" style="max-width: 100%;" alt="img1">
+</div>
+
 
 [Link para o projeto implementado no Quartus](quartus/part1/)
 
@@ -23,10 +35,12 @@ Quartus Prime 21.1 <br>
 ![Simulação do circuito no Quartus](src/simulacao1.PNG "Simulação do circuito no Quartus")
 
 ### 3.
-(imagem do pin planner quartus)
+<div align ="center">
+    <img src ="src/pinplanner_part1.png" style="max-width: 100%;" alt="img1">
+</div>
 
 ### 4.
-Mostrado durante a apresentação
+Mostrado durante a apresentação no laboratório.
 
 ### 5. 
 <div align ="center">
@@ -40,35 +54,36 @@ A diferença observada na implementação de um circuito de 4 bits no Quartus em
 ### Codigo VHDL:
 
 ```
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
-use ieee.std_logic_arith.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
-entity SixteenBitCounter is
-	port
-	(   	 
-    	clk	: in std_logic;
-    	t    	: in std_logic;
-    	q    	: inout std_logic_vector(15 downto 0);
-    	clr	: in std_logic
-	);
-end SixteenBitCounter;
+ENTITY contador16b IS
+    PORT (
+        CLK : IN STD_LOGIC;
+        T   : IN STD_LOGIC;
+        Q   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+        CLR : IN STD_LOGIC
+    );
+END CONTADOR16B;
 
-architecture Behavioral of SixteenBitCounter is
-begin
-	process (clk, t, clr)
-	begin
-    	if clk'event and clk = '1' then
-        	if t = '1' then
-            	q <= q + 1;
-        	end if;
-        	if clr = '0' then
-            	q <= (others => '0');
-        	end if;
-    	end if;
-	end process;
-end Behavioral;
+ARCHITECTURE BEHAVIORAL OF contador16b IS
+    SIGNAL count : UNSIGNED(15 DOWNTO 0);
+BEGIN
+    PROCESS (CLK, CLR)
+    BEGIN
+        IF CLR = '0' THEN
+            count <= (OTHERS => '0'); -- Reset the count
+        ELSIF RISING_EDGE(CLK) THEN
+            IF T = '1' THEN
+                count <= count + 1;
+            END IF;
+        END IF;
+    END PROCESS;
+    
+    Q <= STD_LOGIC_VECTOR(count);
+END BEHAVIORAL;
+
 ```
 <div align ="center">
     <img src ="src/rtl_part2.png" style="max-width: 100%;" alt="img1">
@@ -90,6 +105,7 @@ entity DisplayController is
     port (
         clk     : in std_logic;
         rst     : in std_logic;
+		  enb     : in std_logic;
         seg     : out std_logic_vector(6 downto 0)  -- 7-segment display output
     );
 end DisplayController;
@@ -106,7 +122,7 @@ begin
         if rst = '1' then
             sec_counter <= (others => '0');
             tick <= '0';
-        elsif rising_edge(clk) then
+        elsif rising_edge(clk) and enb = '1' then
             if sec_counter = "10111110101100100000000000" then
                 sec_counter <= (others => '0');
                 tick <= '1';
@@ -122,7 +138,7 @@ begin
     begin
         if rst = '1' then
             digit <= (others => '0');
-        elsif rising_edge(clk) then
+        elsif rising_edge(clk) and enb = '1' then
             if tick = '1' then
                 if digit = "1001" then
                     digit <= (others => '0');
@@ -172,56 +188,73 @@ Como usamos a FPGA DEO-CV (placa pequena), a palavra é a ser rotacionada nos 4 
 ```
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_arith.all;
 
-entity Lab4Part2 is
+entity DisplayController is
     port (
-        clk   : in std_logic;
-        t     : in std_logic;
-        q     : out std_logic_vector(15 downto 0); -- Saída do contador
-        clr   : in std_logic;
-        HEX00 : out std_logic_vector(6 downto 0);  -- Display 0
-        HEX01 : out std_logic_vector(6 downto 0);  -- Display 1
-        HEX02 : out std_logic_vector(6 downto 0);  -- Display 2
-        HEX03 : out std_logic_vector(6 downto 0)   -- Display 3
+        clk     : in std_logic;
+        rst     : in std_logic;
+		  enb     : in std_logic;
+        seg     : out std_logic_vector(27 downto 0)  -- 7-segment display output
+
     );
-end Lab4Part2;
+end DisplayController;
 
-architecture Behavioral of Lab4Part2 is
-
-    component contador16b port
-    (       
-        clk  : in std_logic;
-        t    : in std_logic;
-        q    : out std_logic_vector(15 downto 0);
-        clr  : in std_logic
-    );
-    end component;
-
-    component BinTo7Segment port
-    (
-        bin_in  : in std_logic_vector(3 downto 0);
-        seg_out : out std_logic_vector(6 downto 0)
-    );
-    end component;
-
-    signal q_int : std_logic_vector(15 downto 0);
-    signal seg0, seg1, seg2, seg3 : std_logic_vector(6 downto 0);
-
+architecture Behavioral of DisplayController is
+    signal tick       : std_logic := '0';
+    signal sec_counter: std_logic_vector(25 downto 0) := (others => '0');
+    signal digit      : std_logic_vector(1 downto 0) := (others => '0');
 begin
-    -- Instanciar o contador
-    counter : contador16b port map ( clk, t, q_int, clr );
 
-    -- Instanciar o conversor para cada dígito
-    digit0 : BinTo7Segment port map ( q_int(3 downto 0), seg0 );
-    digit1 : BinTo7Segment port map ( q_int(7 downto 4), seg1 );
-    digit2 : BinTo7Segment port map ( q_int(11 downto 8), seg2 );
-    digit3 : BinTo7Segment port map ( q_int(15 downto 12), seg3 );
+    -- 1-second timer
+    process (clk, rst)
+    begin
+        if rst = '1' then
+            sec_counter <= (others => '0');
+            tick <= '0';
+        elsif rising_edge(clk) and enb = '1' then
+            if sec_counter = "10111110101100100000000000" then
+                sec_counter <= (others => '0');
+                tick <= '1';
+            else
+                sec_counter <= sec_counter + 1;
+                tick <= '0';
+            end if;
+        end if;
+    end process;
 
-    -- Mapear os segmentos para os displays físicos do FPGA
-    HEX00 <= seg0;  -- Segmentos para o display 0
-    HEX01 <= seg1;  -- Segmentos para o display 1
-    HEX02 <= seg2;  -- Segmentos para o display 2
-    HEX03 <= seg3;  -- Segmentos para o display 3
+    -- 2-bit counter
+    process (clk, rst)
+    begin
+        if rst = '1' then
+            digit <= (others => '0');
+        elsif rising_edge(clk) and enb = '1' then
+            if tick = '1' then
+                if digit = "11" then
+                    digit <= (others => '0');
+                else
+                    digit <= digit + 1;
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- 7-segment display decoder
+    process (digit)
+    begin
+        case digit is
+				when "00" => seg <= "0000001011000010000101111111"; -- 0ed_
+				when "01" => seg <= "1111111000000101100001000010"; -- _0ed
+				when "10" => seg <= "1000010111111100000010110000"; -- d_0e
+				when "11" => seg <= "0110000100001011111110000001"; -- ed_0
+				when others => seg <= (others => '0'); -- default to all segments off (if needed)
+        end case;
+		  -- _ = "1111111"
+		  -- e = "0110000"
+		  -- d = "1000010"
+		  -- 0 = "0000001"
+    end process;
 
 end Behavioral;
 ```
@@ -252,7 +285,7 @@ entity DisplayController is
     port (
         clk     : in std_logic;
         rst     : in std_logic;
-      enb     : in std_logic;
+		  enb     : in std_logic;
         seg     : out std_logic_vector(41 downto 0)  -- 7-segment display output
     );
 end DisplayController;
@@ -300,20 +333,21 @@ begin
     process (digit)
     begin
         case digit is
-        when "000" => seg <= "000000101100001000010111111111111111111111"; -- 0ed___
-        when "001" => seg <= "111111100000010110000100001011111111111111"; -- _0ed__
-        when "010" => seg <= "111111111111110000001011000010000101111111"; -- __0ed_
-        when "011" => seg <= "111111111111111111111000000101100001000010"; -- ___0ed
-        when "100" => seg <= "100001011111111111111111111100000010110000"; -- d___0e
-        when "101" => seg <= "011000010000101111111111111111111110000001"; -- ed___0
-        when others => seg <= (others => '0'); -- default to all segments off (if needed)
+				when "000" => seg <= "000000101100001000010111111111111111111111"; -- 0ed___
+				when "001" => seg <= "111111100000010110000100001011111111111111"; -- _0ed__
+				when "010" => seg <= "111111111111110000001011000010000101111111"; -- __0ed_
+				when "011" => seg <= "111111111111111111111000000101100001000010"; -- ___0ed
+				when "100" => seg <= "100001011111111111111111111100000010110000"; -- d___0e
+				when "101" => seg <= "011000010000101111111111111111111110000001"; -- ed___0
+				when others => seg <= (others => '0'); -- default to all segments off (if needed)
         end case;
-      -- _ = "1111111"
-      -- e = "0110000"
-      -- d = "1000010"
-      -- 0 = "0000001"
+		  -- _ = "1111111"
+		  -- e = "0110000"
+		  -- d = "1000010"
+		  -- 0 = "0000001"
     end process;
 
 end Behavioral;
+
 ```
 [Link para o projeto implementado no Quartus](quartus/part5/)
