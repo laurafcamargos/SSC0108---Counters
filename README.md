@@ -19,13 +19,13 @@ Quartus Prime 21.1 <br>
 Implementamos o circuito com portas lógicas e geramos o arquivo vhdl a partir dele:
 
 <div align ="center">
-    <img src ="src/esquemapart1.png.png" style="max-width: 100%;" alt="img1">
+    <img src ="src/esquemapart1.png" style="max-width: 100%;" alt="esquemapart1">
 </div>
 
 Captura de tela durante a compilação do circuito que mostra quantos elementos lógicos e quantos registradores são utilizados:
 
 <div align ="center">
-    <img src ="src/logic_elements_part1.png" style="max-width: 100%;" alt="img1">
+    <img src ="src/logic_elements_part1.png" style="max-width: 100%;" alt="logic_elements_part1">
 </div>
 
 
@@ -36,7 +36,7 @@ Captura de tela durante a compilação do circuito que mostra quantos elementos 
 
 ### 3.
 <div align ="center">
-    <img src ="src/pinplanner_part1.png" style="max-width: 100%;" alt="img1">
+    <img src ="src/pinplanner_part1.png" style="max-width: 100%;" alt="pinplanner_part1">
 </div>
 
 ### 4.
@@ -44,7 +44,7 @@ Mostrado durante a apresentação no laboratório.
 
 ### 5. 
 <div align ="center">
-    <img src ="src/RTL1.PNG" style="max-width: 100%;" alt="img1">
+    <img src ="src/RTL1.PNG" style="max-width: 100%;" alt="RTL1">
 </div>
 
 A diferença observada na implementação de um circuito de 4 bits no Quartus em comparação com o circuito original da Figura 1 é que, no RTL Viewer, o software Quartus utiliza flip-flops do tipo D para realizar a síntese do contador síncrono de 4 bits. Os flip-flops tipo D são comumente usados para armazenar e controlar o estado de um contador síncrono, garantindo que a transição de um estado para o próximo ocorra de forma precisa a cada pulso de clock. Isso difere do que pode ser mostrado na Figura 1, pois embora ambos possam implementar o contador síncrono de 4 bits, o Quartus, ao sintetizar o circuito, usa flip-flops tipo D, pois são mais comuns em FPGAs. Já a Figura 1, ao usar flip-flops tipo T, representa uma forma diferente de projetar o contador, mas ambos alcançam o mesmo resultado lógico.
